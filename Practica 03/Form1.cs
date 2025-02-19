@@ -24,7 +24,7 @@ namespace Practica_03
                 try
                 {
                     texto = File.ReadAllText(filePath);
-                    
+
                     char[] c = texto.ToCharArray();
 
                     for (int i = 0; check == false; i++)
@@ -56,7 +56,7 @@ namespace Practica_03
                     int numColumnas = ll[0].Split(',').Length;
 
                     string[,] matriz = new string[numFilas, numColumnas];
-                    for (int i = 0; i < numFilas-1; i++)
+                    for (int i = 0; i < numFilas - 1; i++)
                     {
                         string[] columnas = ll[i].Split(',');
                         for (int j = 0; j < numColumnas; j++)
@@ -65,11 +65,11 @@ namespace Practica_03
                         }
                     }
 
-                    for(int i = 0; i < DGVTabla.Rows.Count; i++)
+                    for (int i = 0; i < DGVTabla.Rows.Count; i++)
                     {
                         for (int j = 0; j < DGVTabla.Columns.Count; j++)
                         {
-                            DGVTabla[j, i].Value = matriz[i+1, j];
+                            DGVTabla[j, i].Value = matriz[i + 1, j];
                         }
                     }
 
@@ -77,7 +77,7 @@ namespace Practica_03
                     {
                         DGVTabla.Columns[j].HeaderText = matriz[0, j];
                     }
-                    
+
 
                 }
                 catch (Exception ex)
@@ -85,9 +85,14 @@ namespace Practica_03
                     MessageBox.Show("Error al abrir el archivo: " + ex.Message);
                 }
 
-                
+
 
             }
+
+        }
+
+        private void variosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             
         }
     }
