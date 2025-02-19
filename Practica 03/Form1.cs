@@ -93,7 +93,9 @@ namespace Practica_03
 
         private void variosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            //Abrir fechas
+            FRMFechas fechas = new FRMFechas();
+            fechas.Show();
         }
     }
 }

@@ -1,57 +1,34 @@
-using System.Diagnostics.Metrics;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace FRMVarios
+namespace Practica_03
 {
-    public partial class FRMVarios : Form
+    public partial class FRMFechas : Form
     {
-        public FRMVarios()
+        public FRMFechas()
         {
             InitializeComponent();
-        }
-
-        private void BTNCalcular_Click(object sender, EventArgs e)
-        {
-            DateTime nacimiento = DTPFechaNacimiento.Value;
-            DateTime calculo = DTPCalculo.Value;
-            int edad = calculo.Year - nacimiento.Year;
-            int meses = calculo.Month - nacimiento.Month;
-            int dias = calculo.Day - nacimiento.Day;
-
-            if(dias < 0)
-            {
-                meses--;
-                DateTime mesAnt = calculo.AddMonths(-1);
-                dias += DateTime.DaysInMonth(mesAnt.Year, mesAnt.Month);
-            }
-
-            if (meses < 0)
-            {
-                edad--;
-                meses += 12;
-            }
-
-            MessageBox.Show("A�os: " + edad + " Meses: " + meses + " Dias: " + dias, "Resultado ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void DTPFecjaNacimiento_ValueChanged(object sender, EventArgs e)
-        {
-            DTPCalculo.Enabled = true;
-            DTPCalculo.MinDate = DTPFechaNacimiento.Value;
-            BTNCalcular.Enabled = true;
         }
 
         private void BTNCurp_Click(object sender, EventArgs e)
         {
             string fecha = TXTCurp.Text.Substring(4, 6);
             string sexo = TXTCurp.Text.Substring(10, 1);
-            string estado = TXTCurp.Text.Substring(11,2);
+            string estado = TXTCurp.Text.Substring(11, 2);
 
             string fecha1;
             string sexo1 = "";
             string estado1 = "";
 
-            switch (estado){
+            switch (estado)
+            {
                 case "AS":
                     estado1 = "Aguascalientes";
                     break;
@@ -162,7 +139,39 @@ namespace FRMVarios
 
             char[] fc = fecha.ToCharArray();
 
-            MessageBox.Show("fecha: " + fc[4]+fc[5]+"/"+fc[2]+fc[3]+"/"+fc[0]+fc[1] + " sexo: " + sexo1 + " estado: " + estado1, "Resultado ",
+            MessageBox.Show("fecha: " + fc[4] + fc[5] + "/" + fc[2] + fc[3] + "/" + fc[0] + fc[1] + " sexo: " + sexo1 + " estado: " + estado1, "Resultado ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void DTPFechaNacimiento_ValueChanged(object sender, EventArgs e)
+        {
+            DTPCalculo.Enabled = true;
+            DTPCalculo.MinDate = DTPFechaNacimiento.Value;
+            BTNCalcular.Enabled = true;
+        }
+
+        private void BTNCalcular_Click(object sender, EventArgs e)
+        {
+            DateTime nacimiento = DTPFechaNacimiento.Value;
+            DateTime calculo = DTPCalculo.Value;
+            int edad = calculo.Year - nacimiento.Year;
+            int meses = calculo.Month - nacimiento.Month;
+            int dias = calculo.Day - nacimiento.Day;
+
+            if (dias < 0)
+            {
+                meses--;
+                DateTime mesAnt = calculo.AddMonths(-1);
+                dias += DateTime.DaysInMonth(mesAnt.Year, mesAnt.Month);
+            }
+
+            if (meses < 0)
+            {
+                edad--;
+                meses += 12;
+            }
+
+            MessageBox.Show("Años: " + edad + " Meses: " + meses + " Dias: " + dias, "Resultado ",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
